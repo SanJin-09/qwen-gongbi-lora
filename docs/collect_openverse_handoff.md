@@ -1,16 +1,16 @@
-# collect_openverse.py 修复交接说明
+# collect_openverse.py 修复说明
 
 ## 背景
 
 本仓库用于构建工笔画 LoRA 数据集。`scripts/collect_openverse.py` 是数据生产链路里的第一步：从 Openverse 搜索开放授权图片，下载原始图片，并把图片元数据写入数据集 manifest，供后续豆包候选图生成、人工审核和训练使用。
 
-当前问题不是“没有符合条件的图片”，而是运行环境无法成功访问 Openverse API。脚本在 API 请求阶段全部失败，因此没有进入图片下载和尺寸过滤阶段。
+当前运行环境无法成功访问 Openverse API。脚本在 API 请求阶段全部失败，因此没有进入图片下载和尺寸过滤阶段。
 
 ## 相关文件
 
 - `scripts/collect_openverse.py`：需要修复或增强诊断能力的主脚本。
 - `configs/pipeline_gongbi_v1.json`：当前运行配置。
-- `configs/pipeline_gongbi_v1.json.example`：较新的配置模板，包含更多 Openverse 参数。
+- `configs/pipeline_gongbi_v1.json.example`：配置模板，包含 Openverse 参数。
 - `scripts/pipeline_common.py`：数据集路径、JSONL、图片尺寸、hash、slug 等通用工具。
 - `scripts/import_raw_assets.py`：Openverse 不可用时，可用来导入本地图片的替代路径。
 - `requirements.txt`：运行依赖，主要是 `requests`、`pillow`、`urllib3`。
@@ -121,7 +121,7 @@ error:0A000126:SSL routines::unexpected eof while reading
 curl: (35) error:0A000126:SSL routines::unexpected eof while reading
 ```
 
-这说明代理接受了 CONNECT 隧道，但在后续 TLS 握手阶段连接被断开。脚本和 `curl` 失败在同一层，因此当前不是 Python 代码解析、图片过滤、license、query 或 OAuth 的问题。
+代理接受了 CONNECT 隧道，但在后续 TLS 握手阶段连接被断开。脚本和 `curl` 失败在同一层，因此当前不是 Python 代码解析、图片过滤、license、query 或 OAuth 的问题。
 
 ## 当前环境线索
 
