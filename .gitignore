@@ -26,6 +26,8 @@ data/**/candidates/
 data/**/manifests/
 data/**/metadata.json
 data/**/images/*
+data/**/import/*
+data/**/import_rejected/*
 
 # Training and validation artifacts
 outputs/*
