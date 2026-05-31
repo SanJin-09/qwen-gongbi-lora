@@ -90,6 +90,17 @@ def main() -> None:
         target_path = dataset_dir / item["edit_image"]
         prompt_counter[item["prompt"]] += 1
 
+        if input_path.stem.endswith("_input"):
+            errors.append(
+                f"item {index}: image points to source *_input file; "
+                "for DiffSynth edit training image must be the target *_gongbi file"
+            )
+        if target_path.stem.endswith("_gongbi"):
+            errors.append(
+                f"item {index}: edit_image points to target *_gongbi file; "
+                "for DiffSynth edit training edit_image must be the source *_input file"
+            )
+
         for role, path in (("image", input_path), ("edit_image", target_path)):
             if not path.exists():
                 errors.append(f"item {index}: {role} not found: {path}")

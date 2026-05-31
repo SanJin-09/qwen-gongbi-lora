@@ -106,8 +106,8 @@ def main() -> None:
         prompt = category_prompt(config, category)
         metadata.append(
             {
-                "image": relative_to_dataset(input_target, dataset_dir),
-                "edit_image": relative_to_dataset(gongbi_target, dataset_dir),
+                "image": relative_to_dataset(gongbi_target, dataset_dir),
+                "edit_image": relative_to_dataset(input_target, dataset_dir),
                 "prompt": prompt,
             }
         )
@@ -118,15 +118,15 @@ def main() -> None:
                 "asset_id": asset.get("asset_id"),
                 "candidate_id": candidate.get("candidate_id"),
                 "prompt": prompt,
-                "image": relative_to_dataset(input_target, dataset_dir),
-                "edit_image": relative_to_dataset(gongbi_target, dataset_dir),
+                "image": relative_to_dataset(gongbi_target, dataset_dir),
+                "edit_image": relative_to_dataset(input_target, dataset_dir),
                 "source_image_path": asset.get("image_path"),
                 "candidate_image_path": candidate.get("image_path"),
                 "source_url": asset.get("source_url"),
                 "landing_url": asset.get("landing_url"),
                 "license": asset.get("license"),
-                "image_sha256": sha256_file(input_target),
-                "edit_image_sha256": sha256_file(gongbi_target),
+                "image_sha256": sha256_file(gongbi_target),
+                "edit_image_sha256": sha256_file(input_target),
                 "built_at": utc_now(),
             }
         )

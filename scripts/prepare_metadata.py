@@ -90,8 +90,8 @@ def main() -> None:
     for _, input_path, target_path in collect_pairs(images_dir):
         items.append(
             {
-                "image": input_path.relative_to(dataset_dir).as_posix(),
-                "edit_image": target_path.relative_to(dataset_dir).as_posix(),
+                "image": target_path.relative_to(dataset_dir).as_posix(),
+                "edit_image": input_path.relative_to(dataset_dir).as_posix(),
                 "prompt": args.prompt,
             }
         )

@@ -278,6 +278,8 @@ python scripts/validate_lora.py \
 DiffSynth-Studio 的 Qwen-Image-Edit-2511 LoRA 示例使用：
 
 ```text
+metadata.image: 目标输出图，例如 *_gongbi.png
+metadata.edit_image: 输入条件图，例如 *_input.png
 data_file_keys: image,edit_image
 extra_inputs: edit_image
 lora_base_model: dit
