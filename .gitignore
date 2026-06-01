@@ -30,6 +30,7 @@ data/**/import/*
 data/**/import_rejected/*
 
 # Training and validation artifacts
+*.safetensors
 models/
 outputs/*
 logs/*
